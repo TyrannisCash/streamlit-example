@@ -1,0 +1,11 @@
+import requests
+from bs4 import BeautifulSoup
+
+url = 'https://www.ultimate-guitar.com/explore?genres[]=21&type[]=Chords'
+response = requests.get(url)
+
+soup = BeautifulSoup(response.text, 'html.parser')
+chords = soup.find_all('a', class_='_3q8Ed _2QxoE _2OBj3')
+
+for chord in chords:
+    print(chord.get_text())
